@@ -1,1 +1,11 @@
 * Another docker-compose for Symfony
+
+** Exemple d'utilisation
+
+#+BEGIN_SRC sh
+docker-compose up
+docker-compose run --rm engine composer update -o
+docker-compose run --rm engine php /app/bin/console help
+docker-compose run --rm engine php /app/bin/console cache:clear
+docker-compose run --rm engine php /app/bin/console doctrine:database:create
+#+END_SRC
