@@ -1,0 +1,1 @@
+* Another docker-compose for Symfony

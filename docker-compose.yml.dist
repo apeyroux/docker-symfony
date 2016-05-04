@@ -1,0 +1,28 @@
+front:
+  image: nginx
+  ports:
+    - "80:80"
+  links:
+    - "engine:engine"
+  volumes:
+    - ".:/app:ro"
+    - "./docker/front/default.conf:/etc/nginx/conf.d/default.conf:ro"
+
+engine:
+  build: ./docker/engine/
+  volumes:
+    - ".:/app:rw"
+    - "./docker/engine/config/app.ini:/usr/local/etc/php/conf.d/app.ini:ro"
+  links:
+    - "db:db"
+  working_dir: "/app"
+
+db:
+  image: mysql:5.7
+  ports:
+    - "3306:3306"
+  environment:
+    - "MYSQL_ROOT_PASSWORD=password"
+    - "MYSQL_USER=eappel"
+    - "MYSQL_PASSWORD=password"
+    - "MYSQL_DATABASE=eappel"
