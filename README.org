@@ -3,6 +3,7 @@
 ** Exemple d'utilisation
 
 #+BEGIN_SRC sh
+chown -R www-data:www-data var
 docker-compose up
 docker-compose run --rm engine composer update -o
 docker-compose run --rm engine php /app/bin/console help
