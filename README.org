@@ -4,8 +4,17 @@
 
 #+BEGIN_SRC sh
 docker-compose up
+docker-compose run engine composer
 docker-compose run --rm engine composer update -o
 docker-compose run --rm engine php /app/bin/console help
+docker-compose run --rm engine php /app/bin/console doctrine:generate:entities AppBundle
+docker-compose run --rm engine php /app/bin/console doctrine:schema:update --force
 docker-compose run --rm engine php /app/bin/console cache:clear
+docker-compose run --rm engine php /app/bin/console doctrine:database:drop --forces
 docker-compose run --rm engine php /app/bin/console doctrine:database:create
 #+END_SRC
+
+#+BEGIN_SRC sh
+docker run -it --rm --link dockersymfony_db_1:db mysql mysql -h db -u myuser -p mydb
+#+END_SRC
+
