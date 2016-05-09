@@ -7,7 +7,7 @@ RUN apt-get update \
     && docker-php-ext-install -j$(nproc) \
         intl \
         mbstring \
-        mysqli \
+        pdo_mysql \
         zip \
     && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer \
     && chmod +x /usr/local/bin/composer
